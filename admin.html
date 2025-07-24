@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gözlük Galeri Vitrini - Admin Panel</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Login Form -->
+        <div id="loginContainer" class="login-container">
+            <div class="login-form">
+                <h2>Admin Girişi</h2>
+                <div class="input-group">
+                    <label for="username">Kullanıcı Adı</label>
+                    <input type="text" id="username" placeholder="Kullanıcı adınızı girin">
+                </div>
+                <div class="input-group">
+                    <label for="password">Şifre</label>
+                    <input type="password" id="password" placeholder="Şifrenizi girin">
+                </div>
+                <div id="loginError" class="error-message hidden">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>Hatalı kullanıcı adı veya şifre</span>
+                </div>
+                <button id="loginButton" class="btn login-btn">Giriş Yap</button>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="dashboardContainer" class="dashboard-container hidden">
+            <header class="admin-header">
+                <h1>Gözlük Galeri Vitrini - Admin Panel</h1>
+                <button id="logoutButton" class="btn logout-btn">
+                    <i class="fas fa-sign-out-alt"></i> Çıkış Yap
+                </button>
+            </header>
+            
+            <main class="admin-main">
+                <!-- Product Form -->
+                <section class="product-form-section">
+                    <h2>Yeni Ürün Ekle</h2>
+                    <div class="product-form">
+                        <div class="input-group">
+                            <label for="srNo">SR No</label>
+                            <input type="text" id="srNo" placeholder="SR Numarası girin">
+                        </div>
+                        
+                        <div class="file-upload-container">
+                            <label for="imageUpload">Ürün Fotoğrafı</label>
+                            <div class="file-upload">
+                                <div id="dropZone" class="drop-zone">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Fotoğrafı buraya sürükleyin veya seçin</p>
+                                    <input type="file" id="imageUpload" accept="image/*">
+                                </div>
+                                <div id="imagePreviewContainer" class="image-preview-container hidden">
+                                    <img id="imagePreview" src="" alt="Önizleme">
+                                    <button id="removeImage" class="remove-image-btn">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="uploadProgress" class="upload-progress hidden">
+                            <div class="progress-bar">
+                                <div id="progressBar" class="progress-fill"></div>
+                            </div>
+                            <p id="progressStatus">Yükleniyor... 0%</p>
+                        </div>
+                        
+                        <div id="addError" class="error-message hidden">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span id="errorText">Bir hata oluştu</span>
+                        </div>
+                        
+                        <button id="addProductBtn" class="btn add-btn">
+                            <i class="fas fa-plus-circle"></i> Ürün Ekle
+                        </button>
+                    </div>
+                </section>
+                
+                <!-- Products List -->
+                <section class="products-list-section">
+                    <div class="section-header">
+                        <h2>Ürün Listesi</h2>
+                        <div class="search-container">
+                            <input type="text" id="adminSearchInput" placeholder="SR No ara...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="products-table-container">
+                        <table id="productsTable" class="products-table">
+                            <thead>
+                                <tr>
+                                    <th>Önizleme</th>
+                                    <th>SR No</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productsTableBody">
+                                <!-- Products will be loaded dynamically here -->
+                            </tbody>
+                        </table>
+                        
+                        <div id="tableLoading" class="table-loading">
+                            <div class="spinner"></div>
+                            <p>Ürünler yükleniyor...</p>
+                        </div>
+                        
+                        <div id="noProductsMessage" class="no-products-message hidden">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <p>Henüz ürün eklenmemiş</p>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+        
+        <!-- Delete Confirmation Modal -->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <h3>Ürünü Sil</h3>
+                <p>Bu ürünü silmek istediğinizden emin misiniz?</p>
+                <p id="deleteProductSrNo" class="delete-sr-no"></p>
+                <div class="modal-buttons">
+                    <button id="cancelDeleteBtn" class="btn cancel-btn">İptal</button>
+                    <button id="confirmDeleteBtn" class="btn delete-btn">Sil</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="admin.js"></script>
+</body>
+</html>

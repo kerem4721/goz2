@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gözlük Galeri Vitrini</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gözlük Galeri Vitrini</h1>
+            <p>Lüks Gözlük Koleksiyonu</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="filter-container">
+            <input type="text" id="searchInput" placeholder="SR No ile ara...">
+        </div>
+        
+        <div id="gallery" class="gallery">
+            <!-- Products will be loaded dynamically here -->
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Koleksiyon yükleniyor...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Product Modal for fullscreen view -->
+    <div id="productModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <div class="zoom-container">
+                <img id="modalImage" class="modal-image" src="" alt="">
+            </div>
+            <div class="modal-info">
+                <h3 id="modalSrNo">SR No: </h3>
+                <button id="whatsappButton" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp'tan Sipariş Et
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Gözlük Galeri Vitrini - Tüm Hakları Saklıdır</p>
+        </div>
+    </footer>
+
+    <!-- Firebase Scripts -->
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
